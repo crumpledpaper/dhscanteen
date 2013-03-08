@@ -1,0 +1,83 @@
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>DHS Canteen</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" />
+	<link rel="stylesheet" href="/static/style.css" />
+	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
+  </head>
+  <body>
+	<div id="review">
+      <form action="/sign" method="post">
+        <div><textarea name="content" rows="3" cols="60"></textarea></div>
+        <div><input type="submit" value="Post"></div>
+	  </form>
+	</div>
+	
+	<div id="stalls" data-role="page">
+    <div data-role="header" data-theme="b">
+        <a href="#demo-intro" data-rel="back" data-icon="arrow-l" data-iconpos="notext" data-shadow="false" data-icon-shadow="false">Back</a>
+		<a href="{{ url }}" data-role="button">{{ url_linktext }}</a>
+        <h1>Stalls</h1>
+    </div><!-- /header -->
+    <div data-role="content">
+        <ul data-role="listview">
+            <li><a href="#food" class="stalls" id="stall1"><img src="#" alt=""><h2>Stall 1</h2><p>Dessert</p></a></li>
+            <li><a href="#food" class="stalls" id="stall2"><img src="#" alt=""><h2>Stall 2</h2><p>Thai Food</p></a></li>
+            <li><a href="#food" class="stalls" id="stall3"><img src="#" alt=""><h2>Stall 3</h2><p>Snacks</p></a></li>
+			<li><a href="#food" class="stalls" id="stall4"><img src="#" alt=""><h2>Stall 4</h2><p>Mixed Chinese Food</p></a></li>
+            <li><a href="#food" class="stalls" id="stall5"><img src="#" alt=""><h2>Stall 5</h2><p>Japanese Food</p></a></li>
+            <li><a href="#food" class="stalls" id="stall6"><img src="#" alt=""><h2>Stall 6</h2><p>Noodle Soup</p></a></li>
+			<li><a href="#food" class="stalls" id="stall7"><img src="#" alt=""><h2>Stall 7</h2><p>Chicken Rice</p></a></li>
+            <li><a href="#food" class="stalls" id="stall8"><img src="#" alt=""><h2>Stall 8</h2><p>Fried Noodle</p></a></li>
+            <li><a href="#food" class="stalls" id="stall9"><img src="#" alt=""><h2>Stall 9</h2><p>Korean Food</p></a></li>
+			<li><a href="#food" class="stalls" id="stall10"><img src="#" alt=""><h2>Stall 10</h2><p>Vegetarian</p></a></li>
+            <li><a href="#food" class="stalls" id="stall11"><img src="#" alt=""><h2>Stall 11</h2><p>Yong Tau Foo</p></a></li>
+            <li><a href="#food" class="stalls" id="stall12"><img src="#" alt=""><h2>Stall 12</h2><p>Western Food</p></a></li>
+			<li><a href="#food" class="stalls" id="stall13"><img src="#" alt=""><h2>Stall 13</h2><p>Mixed Chinese Rice</p></a></li>
+            <li><a href="#food" class="stalls" id="stall14"><img src="#" alt=""><h2>Stall 14</h2><p>Drinks</p></a></li>
+            <li><a href="#food" class="stalls" id="stall15"><img src="#" alt=""><h2>Stall 15</h2><p>Malay Food</p></a></li>
+			<li><a href="#food" class="stalls" id="stall16"><img src="#" alt=""><h2>Stall 16</h2><p>Drinks</p></a></li>
+		</ul>
+    </div><!-- /content -->
+	</div>
+
+	<div id="food" data-role="page">
+	  <div id="new">
+	    <form action="" method="post">
+	      <div><label>Image</label></div>
+		  <div><input type="file" name="img"></div>
+		  <div class="small"><input type="text" name="name"></div>
+		  <div class="small"><input type="number" name="price" min="0" step="0.05" value="$" class="small"></div>
+		  <input type="submit" value="Add">
+	    </form>
+	  </div>
+	  <ul data-role="listview">
+		{% for item in food %}
+		  <li>{{ food.name }}</li>
+		{% endfor %}
+	  </ul>
+	</div>
+
+
+	<div class="reviews">
+    {% for review in reviews %}
+      {% if review.author %}
+        <b>{{ review.author }}</b> wrote:
+      {% else %}
+        An anonymous person wrote:
+      {% endif %}
+      <blockquote>{{ review.content|escape }}</blockquote>
+    {% endfor %}
+	</div>
+
+
+  </body>
+</html>
