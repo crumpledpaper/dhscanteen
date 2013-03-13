@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block forms %}
+<div id="newfood" data-role="page">
+	<h1>Add New Food Item</h1>
+	<form action="/newfood" method="post">
+	  <div class="ui-hide-label"><label>Picture</label>
+	  <input type="file" name="img"></div>
+	  <div class="ui-hide-label">
+	  <label>Name</label>
+	  <input type="text" name="name"></div>
+	  <div class="ui-hide-label">
+	  <label>Price</label>
+	  <input type="number" name="price" min="0" step="0.05" value="$" class="small"></div>
+	  <input type="submit" value="Add">
+	</form>
+</div>
+
+<div id="newreview" data-role="page">
+  <form action="/review" method="post">
+	<div><textarea name="content" rows="3" cols="60"></textarea></div>
+	<div><input type="submit" value="Post"></div>
+  </form>
+</div>
+{% endblock %}

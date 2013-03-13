@@ -1,19 +1,6 @@
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>DHS Canteen</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css" />
-	<link rel="stylesheet" href="/static/style.css" />
-	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.js"></script>
-  </head>
-  <body>
+{% extends "base.html" %}
+{% block content %}
+
 	<div id="home" data-role="page" data-theme="b">
 		<h1>DHS Canteen</h1>
 		<a href="#stalls" data-role="button">Browse</a>
@@ -22,7 +9,7 @@
 	<div id="stalls" data-role="page">
     <div data-role="header" data-theme="b">
         <a href="" data-rel="back" data-icon="arrow-l" data-iconpos="notext" data-shadow="false" data-icon-shadow="false">Back</a>
-		<a href="{{ url }}" data-role="button">{{ url_linktext }}</a>
+		<a href="?logout&hl=en&hlor" data-role="button">{{ url_linktext }}</a>
         <h1>Stalls</h1>
     </div><!-- /header -->
     <div data-role="content">
@@ -50,7 +37,7 @@
 	<div id="food" data-role="page">
 	  <div data-role="header" data-theme="b">
 	    <a href="" data-rel="back" data-icon="arrow-l" data-iconpos="notext" data-shadow="false" data-icon-shadow="false">Back</a>
-	    <a href="#newfood" data-icon="plus" data-iconpos="notext">Add</a>
+	    <a href="/newfood" data-ajax="false" data-icon="plus" data-iconpos="notext">Add</a>
 		<h1>Stall 16</h1>
 		<h3>Drinks</h3>
 	  </div>
@@ -70,30 +57,5 @@
 		{% endfor %}
 	  </ul>
 	</div>
-	
-	<div id="newfood" data-role="page">
-		<h1>Add New Food Item</h1>
-	    <form action="" method="post">
-	      <div><label>Picture</label>
-		  <input type="file" name="img"></div>
-		  <div class="small">
-		  <label>Name</label>
-		  <input type="text" name="name"></div>
-		  <div class="small">
-		  <label>Price</label>
-		  <input type="number" name="price" min="0" step="0.05" value="$" class="small"></div>
-		  <input type="submit" value="Add">
-	    </form>
-	</div>
-
-
-	
-	<div id="newreview" data-role="page">
-      <form action="/review" method="post">
-        <div><textarea name="content" rows="3" cols="60"></textarea></div>
-        <div><input type="submit" value="Post"></div>
-	  </form>
-	</div>
-
-  </body>
-</html>
+	{% block forms %}{% endblock %}
+{% endblock %}
