@@ -6,8 +6,8 @@ import jinja2
 import os
 
 
-jinja_environment = jinja2.Environment(
-    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
+jinja_environment = jinja2.Environment(autoescape=True,
+    loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__),'templates')))
 
 from models import Food, Review
 from google.appengine.ext import db
